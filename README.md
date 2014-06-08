@@ -26,7 +26,7 @@ This script does the following:
 4. Appropriately labels the data set with descriptive variable names. 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-CodeBook.R
-===========
+CodeBook.R details
+===================
 
 <to be filled in later>
