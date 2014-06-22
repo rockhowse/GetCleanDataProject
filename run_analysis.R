@@ -53,9 +53,10 @@ setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanData
   #append on subject and activity data
   df_all_clean <- cbind(df_sub, df_y, df_X)
   str(df_all_clean)
-  write.table(df_all_tidy, "X_y_sub_combined_clean_data.txt")
+  write.table(df_all_clean, "X_y_sub_combined_clean_data.txt")
   dim(df_all_clean)
 
 # 5 Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
+  
 
