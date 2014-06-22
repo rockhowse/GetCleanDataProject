@@ -11,12 +11,15 @@ setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanData
 # 1. Merges the training and the test sets to create one data set.
 X_train_fn <- read.table("train/X_train.txt")
 X_test_fn <- read.table("test/X_test.txt")
-X <- rbind(tmp1, tmp2)
+df_X <- rbind(X_train_fn, X_test_fn)
+str(df_X)
 
 sub_train_fn <- read.table("train/subject_train.txt")
 sub_train_fn <- read.table("test/subject_test.txt")
-S <- rbind(tmp1, tmp2)
+df_sub <- rbind(sub_train_fn, sub_train_fn)
+str(df_sub)
 
-Y_Train_fn <- read.table("train/y_train.txt")
-Y_Test_fn <- read.table("test/y_test.txt")
-Y <- rbind(tmp1, tmp2)
+y_Train_fn <- read.table("train/y_train.txt")
+y_Test_fn <- read.table("test/y_test.txt")
+df_y <- rbind(y_Train_fn, y_Test_fn)
+
