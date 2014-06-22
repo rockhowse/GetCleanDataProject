@@ -1,12 +1,15 @@
-#This R is the main application used to obtain, process and write out the data used for this project
+#This R is the main application used to obtain, process and write out a tidy data set
+library(data.table)
 
 # 0. Downloads and upzipps the data
-file_url="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
-download.file(file_url, destfile=data_file_name, method="curl")
-unzip(data_file_name)
+  #setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanDataProject")
+  #file_url="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  #data_file_name <- "w3_project_data.zip"
+  #download.file(file_url, destfile=data_file_name, method="curl")
+  #unzip(data_file_name)
 
-setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanDataProject/UCI HAR Dataset")
+  #setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanDataProject/UCI HAR Dataset")
 
 # 1. Merges the training and the test sets to create one data set.
   
@@ -46,7 +49,7 @@ setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanData
   activities <- read.table("activity_labels.txt")
   activities[, 2] = gsub("_", " ", as.character(activities[, 2]))
   df_y[,1] = activities[df_y[,1], 2]
-  str(df_y)
+  dim(df_y)
 
 # 4 Appropriately labels the data set with descriptive variable names. 
 
@@ -54,9 +57,14 @@ setwd("F:/Dogbert/Coursera/DataScience/03_GettingAndCleaningData/W3/GetCleanData
   df_all_clean <- cbind(df_sub, df_y, df_X)
   str(df_all_clean)
   write.table(df_all_clean, "X_y_sub_combined_clean_data.txt")
-  dim(df_all_clean)
+  dim(df_all_clean) #10299*68
 
 # 5 Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+  dt_all_clean <- data.table(df_all_clean)
+  df_all_clean_tidy <- dt_all_clean[,lapply(.SD,mean),by="activity,subject"] 
+  dim(df_all_clean_tidy) #180*66 
 
-  
+  # write it out for submission
+  write.table(df_all_clean_tidy, "df_all_clean_tidy.txt")
 
+  return(df_all_clean_tidy)
