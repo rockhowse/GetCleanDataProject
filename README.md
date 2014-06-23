@@ -29,4 +29,4 @@ This script does the following:
 CodeBook.R details
 ===================
 
-<to be filled in later>
+See the CodeBook.R for more details on how the application functions.
